@@ -158,7 +158,7 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
         slowButton.isEnabled = enabled
         lowPitchButton.isEnabled = enabled
         fastButton.isEnabled = enabled
-        lowPitchButton.isEnabled = enabled
+        highPitchButton.isEnabled = enabled
         echoButton.isEnabled = enabled
         reverbButton.isEnabled = enabled
     }
