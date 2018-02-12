@@ -56,12 +56,20 @@ class PlaySoundsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+    	super.viewWillAppear(animated)
         configureUI(.notPlaying)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAudio()
+    	slowButton.imageView?.contentMode = .scaleAspectFit
+        fastButton.imageView?.contentMode = .scaleAspectFit
+        lowPitchButton.imageView?.contentMode = .scaleAspectFit
+        highPitchButton.imageView?.contentMode = .scaleAspectFit
+        echoButton.imageView?.contentMode = .scaleAspectFit
+        reverbButton.imageView?.contentMode = .scaleAspectFit
+        stopButton.imageView?.contentMode = .scaleAspectFit
 
         // Do any additional setup after loading the view.
     }
