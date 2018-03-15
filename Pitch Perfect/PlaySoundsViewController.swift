@@ -11,24 +11,6 @@ import AVFoundation
 	
 class PlaySoundsViewController: UIViewController {
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        configureUI(.notPlaying)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupAudio()
-        slowButton.imageView?.contentMode = .scaleAspectFit
-        fastButton.imageView?.contentMode = .scaleAspectFit
-        lowPitchButton.imageView?.contentMode = .scaleAspectFit
-        highPitchButton.imageView?.contentMode = .scaleAspectFit
-        echoButton.imageView?.contentMode = .scaleAspectFit
-        reverbButton.imageView?.contentMode = .scaleAspectFit
-        stopButton.imageView?.contentMode = .scaleAspectFit
-        
-    }
-    
     @IBOutlet weak var slowButton: UIButton!
     @IBOutlet weak var highPitchButton: UIButton!
     @IBOutlet weak var fastButton: UIButton!
@@ -46,6 +28,32 @@ class PlaySoundsViewController: UIViewController {
     enum ButtonType: Int {
         case fast = 0, slow, highpitch, lowpitch, echo, reverb}
     
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureUI(.notPlaying)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureButtons()
+        
+    }
+
+    private func configureButtons() {
+        configure(button: slowButton)
+        configure(button: highPitchButton)
+        configure(button: fastButton)
+        configure(button: lowPitchButton)
+        configure(button: echoButton)
+        configure(button: reverbButton)
+        configure(button: stopButton)
+    }
+    
+    private func configure(button: UIButton	){
+        button.imageView?.contentMode = .scaleAspectFit
+    }
     
     @IBAction func playSoundForButton(_ sender: UIButton) {
         //print("Play Sound Button Pressed")
@@ -69,7 +77,6 @@ class PlaySoundsViewController: UIViewController {
     @IBAction func stopButtonPressed(_ sender: AnyObject) {
         stopAudio()
     }
-    
     
 
 }
