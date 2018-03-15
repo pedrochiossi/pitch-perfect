@@ -21,28 +21,26 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         stopRecordingButton.isEnabled = false
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
-
+    
     
     func configureUI(isRecording: Bool) {
-            if isRecording{
-                recordingLabel.text = "Recording in Progress"
-                stopRecordingButton.isEnabled = true
-                recordButton.isEnabled = false
-            }
-            else{
-                recordButton.isEnabled = true
-                stopRecordingButton.isEnabled = false
-                recordingLabel.text = "Tap to Record"
-            }
+        if isRecording {
+            recordingLabel.text = "Recording in Progress"
+            stopRecordingButton.isEnabled = true
+            recordButton.isEnabled = false
+        } else {
+            recordButton.isEnabled = true
+            stopRecordingButton.isEnabled = false
+            recordingLabel.text = "Tap to Record"
+        }
     }
     
     @IBAction func recordAudio(_ sender: UIButton) {
         configureUI(isRecording: true)
-    
-
+        
+        
         let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask, true)[0] as String
         let recordingName = "recordedVoice.wav"
         let pathArray = [dirPath, recordingName]
@@ -58,6 +56,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         audioRecorder.record()
         
     }
+    
     @IBAction func stopRecording(_ sender: UIButton) {
         configureUI(isRecording: false)
         audioRecorder.stop()
@@ -67,11 +66,11 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-        if flag{
+        if flag {
             performSegue(withIdentifier: "stopRecording", sender: audioRecorder.url)
-        } else{
+        } else {
             let alert = UIAlertController(title: "Error", message: "Recording was not successful", preferredStyle: .alert)
-            self.present(alert, animated: true) 
+            self.present(alert, animated: true)
         }
     }
     
